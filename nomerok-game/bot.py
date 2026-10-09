@@ -12,7 +12,7 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 # ============================================================
 BOT_TOKEN = 8986084844:AAFV8AGFzMSCro-hPBIINCApH0-zZPQ-_Uk  # ← ЗАМЕНИТЕ
 ADMIN_ID = 8522347927                          # ← ЗАМЕНИТЕ (ваш ID)
-WEBAPP_URL = "https://ваш-проект.railway.app" # ← ЗАМЕНИТЕ после деплоя
+WEBAPP_URL = "gallant-hope-production-5d93.up.railway.app" # ← ЗАМЕНИТЕ после деплоя
 # ============================================================
 
 DB_FILE = "game.db"
