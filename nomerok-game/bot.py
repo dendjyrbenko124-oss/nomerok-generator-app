@@ -8,11 +8,11 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppI
 from telegram.ext import Application, CommandHandler, ContextTypes
 
 # ============================================================
-# ЗАМЕНИТЕ ТРИ ЗНАЧЕНИЯ НИЖЕ
+# Настройки читаются из переменных окружения (Railway service variables)
 # ============================================================
-BOT_TOKEN = 8986084844:AAFV8AGFzMSCro-hPBIINCApH0-zZPQ-_Uk  # ← ЗАМЕНИТЕ
-ADMIN_ID = 8522347927                          # ← ЗАМЕНИТЕ (ваш ID)
-WEBAPP_URL = "gallant-hope-production-5d93.up.railway.app" # ← ЗАМЕНИТЕ после деплоя
+BOT_TOKEN = os.environ["BOT_TOKEN"]
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "0"))
+WEBAPP_URL = os.environ.get("WEBAPP_URL", "gallant-hope-production-5d93.up.railway.app")
 # ============================================================
 
 DB_FILE = "game.db"
@@ -327,7 +327,7 @@ async def clan_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     elif action == "leave":
         if not p["clan_id"]:
-await update.message.reply_text("Вы не в клане.")
+            await update.message.reply_text("Вы не в клане.")
             return
         conn = sqlite3.connect(DB_FILE)
         c = conn.cursor()
@@ -552,7 +552,7 @@ def api_case():
     l2 = random.choice(letters)
     digits = "".join(str(random.randint(0, 9)) for _ in range(3))
 
-region = random.choice(["77", "78", "16", "66", "25"])
+    region = random.choice(["77", "78", "16", "66", "25"])
     number = f"{l1} {digits} {l2}{l2} {region}"
     price = RARITIES[rarity]["price"] * random.randint(9, 15) // 10
     
